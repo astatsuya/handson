@@ -43,14 +43,14 @@ export default {
           { data: "checkbox", type: "checkbox" },
           {
             data: "code",
-            placeholder: "ログインID",
+            placeholder: "code",
             type: "text",
             allowEmpty: false
             // validator: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)(?<!.{100,})$/
           },
           {
             data: "description",
-            placeholder: "ユーザー名",
+            placeholder: "description",
             allowEmpty: false,
             type: "text"
             // validator: /^.{1,50}$/
@@ -58,12 +58,12 @@ export default {
           {
             data: "rate",
             type: "numeric",
-            placeholder: "かな",
+            placeholder: "rate",
             allowEmpty: false
             // validator: /^[あ-ん゛゜ぁ-ぉゃ-ょー「」、]+/
           },
           {
-            data: "is_company_user",
+            data: "rate_float",
             type: "dropdown",
             placeholder: "test",
             allowEmpty: false,
@@ -86,13 +86,6 @@ export default {
             allowEmpty: false,
             source: [this.$store.getters.newGroup]
             // ここになんらかの方法でapiからのデータを入れたい
-          },
-          {
-            data: "status",
-            type: "dropdown",
-            placeholder: "last",
-            allowEmpty: false,
-            source: ["last1", "last2", "last3"]
           }
         ],
         contextMenu: {
@@ -133,13 +126,7 @@ export default {
     this.getManagementApi();
   },
   methods: {
-    ...mapMutations([
-      "setAllUsersInfo",
-      "setAllCheck",
-      "setClickedTableRowIndex",
-      "setDeleteUsers",
-      "setCompanyGroupApiData"
-    ]),
+    ...mapMutations(["setAllUsersInfo"]),
     ...mapActions(["getManagementApi"]),
     // ここにapiのデータが入れられない
     // columnSources: function() {

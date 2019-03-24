@@ -9,14 +9,10 @@ const moduleUserManagement = {
 
     allUsersInfo: [],
     newUsers: {
-      empty: false,
-      input: false,
       checkbox: false,
-      login_id: "",
-      name: "",
-      kana: "",
       description: "",
       rate: "",
+      rate_float: "",
       code: "",
       registeredUser: false
     }
@@ -27,9 +23,6 @@ const moduleUserManagement = {
     },
     setManagementApiData: function(state, payload) {
       state.allUsersInfo = [payload.getManagement];
-    },
-    setCompanyGroupApiData: function(state, payload) {
-      state.allCompanyGroupInfo = payload.getCompanyGroup;
     }
   },
   getters: {
@@ -46,15 +39,11 @@ const moduleUserManagement = {
       const apiManagementData = () => {
         return api.get(context.state.getApi);
       };
-
       try {
         const getApiData = await axios.all([apiManagementData()]);
         const usersInfo = await getApiData[0].data.bpi.EUR;
-        (usersInfo.checkbox = await false),
-          (usersInfo.registeredUser = await true),
-          (usersInfo.input = await false),
-          (usersInfo.empty = await false);
-
+        usersInfo.checkbox = await true;
+        usersInfo.registeredUser = await true;
         payload.getManagement = await usersInfo;
         await context.commit("setManagementApiData", payload);
       } catch (error) {
