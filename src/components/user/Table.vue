@@ -221,6 +221,7 @@ export default {
       // これはvuexに最初からあるstate
       console.log(this.newUsers);
       // これがエラーになる。vuexでapiから取得したデータを入れたstate
+      // 実際には別のapiから取得したデータを入れたい
       // console.log(this.currentAllUsersInfo);
       return [{ ty: "test" }, { ty: "jest" }];
     },
