@@ -104,7 +104,8 @@ export default {
         },
         minSpareRows: 1,
         beforeCreateRow: this.beforeCreateRowVue,
-        afterBeginEditing: this.afterBeginEditingVue
+        afterBeginEditing: this.afterBeginEditingVue,
+        afterChange: this.afterChangeVue
       };
     },
     currentAllUsersInfo: {
@@ -145,6 +146,13 @@ export default {
     afterBeginEditingVue: function(row) {
       // console.log(this.newUsers);
       this.currentAllUsersInfo[row].input = true;
+    },
+    afterChangeVue: function(changes, source) {
+      if (source === "loadData") {
+        return;
+      }
+      console.log(changes);
+      console.log(this.$store.getters.currentAllUsersInfo);
     },
     showData: function() {
       console.log(this.$refs.hotTableComponent.hotInstance.getData());
